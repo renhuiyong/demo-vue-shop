@@ -5,7 +5,7 @@ import {
     RECEIVE_ADDRESS,
     RECEIVE_CATEGORYS,
     RECEIVE_SHOPS,
-    // RECEIVE_USER_INFO,
+    RECEIVE_USER_INFO,
     // RESET_USER_INFO,
     // RECEIVE_GOODS,
     // RECEIVE_RATINGS,
@@ -62,11 +62,11 @@ export default {
             commit(RECEIVE_SHOPS, {shops})
         }
     },
-    //
-    // // 同步记录用户信息
-    // recordUser({commit}, userInfo) {
-    //     commit(RECEIVE_USER_INFO, {userInfo})
-    // },
+
+    // 同步记录用户信息
+    recordUser({commit}, userInfo) {
+        commit(RECEIVE_USER_INFO, {userInfo})
+    },
     //
     // // 异步获取用户信息
     // async getUserInfo({commit}) {
