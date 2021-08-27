@@ -149,7 +149,7 @@ export default {
         this.intervalId = undefined
       }
       if (result) {
-      // if (result.code === 0) {
+        // if (result.code === 0) {
         //保存到vuex
         // const user = result.data
         // this.$store.dispatch('recordUser', user)
