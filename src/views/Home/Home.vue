@@ -3,14 +3,17 @@
     <!--首页头部-->
     <HeaderTop :title="address.name">
       <template v-slot:left>
-         <span class="header_search">
+        <router-link class="header_search" to="search">
           <i class="iconfont icon-sousuo"></i>
-        </span>
+        </router-link>
       </template>
       <template v-slot:right>
-         <span class="header_login">
-          <span class="header_login_text">登录|注册</span>
-         </span>
+        <router-link class="header_login" :to="userInfo.id ? '/userInfo': '/login'">
+          <span class="header_login_text" v-if="!userInfo.id">登录|注册</span>
+          <span class="header_login_text" v-else>
+            <i class="iconfont icon-person"></i>
+          </span>
+        </router-link>
       </template>
     </HeaderTop>
     <!--首页导航-->
@@ -55,7 +58,7 @@ export default {
     this.getShops();
   },
   methods: {
-    ...mapActions(['getCategorys','getShops'])
+    ...mapActions(['getCategorys', 'getShops'])
   },
   watch: {
     categorys() {
@@ -69,15 +72,15 @@ export default {
       //     },
       //   })
       // },100)
-      this.$nextTick(()=>{
-          new Swiper('.swiper-container', {
-            direction: 'vertical', // 垂直切换选项
-            loop: true, // 循环模式选项
-            // 如果需要分页器
-            pagination: {
-              el: '.swiper-pagination',
-            },
-          })
+      this.$nextTick(() => {
+        new Swiper('.swiper-container', {
+          direction: 'vertical', // 垂直切换选项
+          loop: true, // 循环模式选项
+          // 如果需要分页器
+          pagination: {
+            el: '.swiper-pagination',
+          },
+        })
       })
     }
   },
@@ -86,7 +89,7 @@ export default {
     ShopList
   },
   computed: {
-    ...mapState(['address', 'categorys']),
+    ...mapState(['address', 'categorys', 'userInfo']),
     categorysArr() {
       const {categorys} = this
       const arr = [];

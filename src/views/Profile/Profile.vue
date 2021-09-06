@@ -2,7 +2,7 @@
   <section class="profile">
     <HeaderTop title="我的"/>
     <section class="profile-number">
-      <router-link to="/login" class="profile-link">
+      <router-link :to="userInfo.id ? '/userInfo': '/login'" class="profile-link">
         <div class="profile_image">
           <i class="iconfont icon-person"></i>
         </div>
@@ -12,7 +12,7 @@
               <span class="user-icon">
                 <i class="iconfont icon-shouji icon-mobile"></i>
               </span>
-            <span class="icon-mobile-number">{{userInfo.phone || '暂无绑定手机号'}}</span>
+            <span class="icon-mobile-number">{{ userInfo.phone || '暂无绑定手机号' }}</span>
           </p>
         </div>
         <span class="arrow">
@@ -88,6 +88,11 @@
         </div>
       </a>
     </section>
+    <section class="profile_my_order border-1px">
+      <el-button v-if="userInfo.id" style="width: 100%" type="danger" @click="logout">
+        退出登陆
+      </el-button>
+    </section>
   </section>
 </template>
 
@@ -100,6 +105,23 @@ export default {
   components: {
     HeaderTop
   },
+  methods: {
+    logout() {
+      this.$confirm('是否确定退出？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '退出',
+        cancelButtonText: '取消'
+      }).then(() => {
+        this.$store.dispatch('logout')
+        // this.$message({
+        //   type: 'info',
+        //   message: '退出成功'
+        // });
+      }).catch(action => {
+        console.log(action)
+      });
+    }
+  },
   computed: {
     ...mapState(['userInfo'])
   }
@@ -108,9 +130,13 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
 @import "../../common/stylus/mixins.styl"
+body {
+  overflow hidden
+
+}
+
 .profile //我的
   width 100%
-  overflow hidden
 
   .header
     background-color #02a774
@@ -159,7 +185,8 @@ export default {
         color #fff
 
   .profile-number
-    margin-top 45.5px
+    margin-top -10px
+    //overflow hidden
 
     .profile-link
       clearFix()
@@ -318,4 +345,7 @@ export default {
           .icon-jiantou1
             color #bbb
             font-size 10px
+.profile{
+  margin-top 60px
+}
 </style>

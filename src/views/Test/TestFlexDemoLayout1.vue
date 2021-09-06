@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
 @media screen and (min-device-width: 1000px) {
   #layout {
     display flex

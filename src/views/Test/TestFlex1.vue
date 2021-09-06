@@ -32,7 +32,7 @@ align-content   flex-start|flex-end|center|space-between|space-around|stretch   
   //flex-direction row  //flex-direction属性决定主轴的方向（即项目的排列方向）。
   //flex-wrap wrap //默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。
   flex-flow row wrap // 方向｜如何换行 -> 已水平的方向换行
-  justify-content space-around //剩余空间如何填充显示
+  justify-content space-between //剩余空间如何填充显示
   //align-items   flex-start
   align-content center
   height 500px

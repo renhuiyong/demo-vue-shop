@@ -1,8 +1,14 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
-import Home from '../views/Home/Home'
-import Search from '../views/Search/Search'
-import Order from '../views/Order/Order'
-import Profile from '../views/Profile/Profile'
+// import Home from '../views/Home/Home'
+// import Search from '../views/Search/Search'
+// import Order from '../views/Order/Order'
+// import Profile from '../views/Profile/Profile'
+
+const Home = () => import('../views/Home/Home.vue')
+const Search = () => import('../views/Search/Search.vue')
+const Order = () => import('../views/Order/Order.vue')
+const Profile = () => import('../views/Profile/Profile.vue')
+
 import Login from "@/views/Login/Login";
 import TestMedia3 from '@/views/Test/TestMedia3'
 import TestMedia2 from '@/views/Test/TestMedia2'
@@ -17,6 +23,12 @@ import TestFlexDemo4 from "@/views/Test/TestFlexDemo4";
 import TestFlexDemo41 from "@/views/Test/TestFlexDemo41";
 import TestFlexDemo42 from "@/views/Test/TestFlexDemo42";
 import TestFlexDemoLayout1 from "@/views/Test/TestFlexDemoLayout1";
+import RemDemo from "@/views/Test/RemDemo";
+import TestLayout from "@/views/Test/TestLayout";
+import ShopGoods from "@/views/Shop/ShopGoods/ShopGoods";
+import ShopRatings from "@/views/Shop/ShopRatings/ShopRatings";
+import ShopInfo from "@/views/Shop/ShopInfo/ShopInfo";
+import Shop from "@/views/Shop/Shop";
 
 const routes = [
     {
@@ -104,7 +116,38 @@ const routes = [
     {
         path: '/layout1',
         component: TestFlexDemoLayout1,
+    },
+    {
+        path: '/rem1',
+        component: RemDemo,
+    },
+    {
+        path: '/auto1',
+        component: TestLayout,
+    },
+    {
+        path: '/shop',
+        component: Shop,
+        children: [
+            {
+                path: '/shop/goods',
+                component: ShopGoods,
+            },
+            {
+                path: '/shop/ratings',
+                component: ShopRatings,
+            },
+            {
+                path: '/shop/info',
+                component: ShopInfo,
+            },
+            {
+                path: '',
+                component: ShopGoods,
+            },
+        ]
     }
+
 ]
 
 const router = createRouter({
